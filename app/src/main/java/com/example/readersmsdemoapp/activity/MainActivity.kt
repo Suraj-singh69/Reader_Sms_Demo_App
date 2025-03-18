@@ -73,16 +73,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         swipeRefreshLayout.setOnRefreshListener {
+            senderIdInput.text.clear()
+            senderFilter = null
             loadSMS()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        senderIdInput.text.clear()
-        senderFilter = null
-        loadSMS()
-    }
+
 
     private fun checkPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
@@ -122,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "Fetching SMS...")
 
         swipeRefreshLayout.isRefreshing = true
-        senderIdInput.text.clear() // Clear EditText here
+//        senderIdInput.text.clear()
 
         coroutineScope.launch(Dispatchers.IO) {
             val uri: Uri = Telephony.Sms.Inbox.CONTENT_URI
