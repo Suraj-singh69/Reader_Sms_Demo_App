@@ -24,7 +24,7 @@ class SMSReceiver : BroadcastReceiver() {
                     Log.d("SMSReceiver", "Sender: $sender, Message: $messageBody")
                     showNotification(context!!, sender, messageBody)
 
-                    val refreshIntent = Intent("com.example.readersmsdemoapp.NEW_SMS_RECEIVED")
+                    val refreshIntent = Intent("NEW_SMS_RECEIVED")
                     context?.sendBroadcast(refreshIntent)
                     Log.d("SMSReceiver", "Refresh intent sent.")
                 }
